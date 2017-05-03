@@ -5,3 +5,6 @@ INC_OPENCV = -I$(PATH_PROJ_ROOT)/public/opencv/include
 LIB_OPENCV_3RDPARTY = -L$(PATH_PROJ_ROOT)/public/opencv/lib -ljpeg -lIlmImf -llibjasper -lpng -llibtiff 
 LIB_OPENCV = -lopencv_highgui -lopencv_objdetect -lopencv_imgproc -lopencv_core $(LIB_OPENCV_3RDPARTY)
 
+INC_COMM = -I$(PATH_PROJ_ROOT)/comm/include
+LIB_COMM = -L$(PATH_PROJ_ROOT)/comm/lib -lcomm
+

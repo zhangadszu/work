@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
     */
     cout<<argv[1];
     cout<<" Before S_Mean "<<CalMean(hsv[1]);
-///*
+//*
     int factor = atoi(argv[2]);
     Process(hsv[1], factor);
 

@@ -1,7 +1,9 @@
 include $(WORK_TEST_BASE)/makefile.inc
 
+INC += $(INC_COMM)
 INC += $(INC_OPENCV)
 
+LIB += $(LIB_COMM)
 LIB += $(LIB_OPENCV)
 LIB += -lz -lm -lrt -lpthread
 
