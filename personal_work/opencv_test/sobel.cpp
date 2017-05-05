@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     //![load]
 
     //![reduce_noise]
-    GaussianBlur(src, src, Size(3, 3), 0, 0, BORDER_DEFAULT);
+    //GaussianBlur(src, src, Size(3, 3), 0, 0, BORDER_DEFAULT);
     //![reduce_noise]
 
     //![convert_to_gray]

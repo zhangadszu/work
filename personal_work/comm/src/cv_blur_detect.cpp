@@ -1,6 +1,9 @@
+#include <iostream>
 #include "cv_photo_quality.h"
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
+
+using namespace std;
 
 static int GetMaxGradient(uchar* gray, int width, int height, int direction)
 {
@@ -42,6 +45,70 @@ static int GetMaxGradient(uchar* gray, int width, int height, int direction)
         }
 
     }
+    return maxGradient;
+}
+
+static int GetMaxGradientEx(uchar* gray, int width, int height, int direction)
+{
+    int size = width * height;
+    int maxGradient = 0;
+    int temp = 0;
+    if((gray == NULL) || (size <= 0))
+    {
+        return 0;
+    }
+
+    int count = 0;
+    int hist[256] = {0};
+    if(direction == 0)
+    {
+        for(int y = 0; y < height; ++y)
+        {
+            int yTemp = y * width;
+            for(int x = 0; x < width-1; ++x)
+            {
+                temp = std::abs(gray[x + yTemp] - gray[x+1 + yTemp]);
+                ++hist[temp];
+                ++count;
+            }
+        }
+    }
+    else
+    {
+        for(int x = 0; x < width; ++x)
+        {
+            for(int y = 0; y < height-1; ++y)
+            {
+                temp = std::abs(gray[x + y*width] - gray[x + (y+1)*width]);
+                ++hist[temp];
+                ++count;
+            }
+        }
+
+    }
+
+    //cout<<endl<<"#######"<<endl;
+    int sum1 = 0;
+    int sum2 = 0;
+    const float thresh = 0.001;
+    const int maxValueCount = 20;
+    for(int k = 255; k >= 0; --k)
+    {
+        sum1 += hist[k] * k;
+        sum2 += hist[k];
+        //cout<<k<<","<<hist[k]<<","<<count<<endl;
+        if(maxValueCount <= sum2
+            || ((float)sum2 / count) > thresh)
+        {
+            break;
+        }
+    }
+    //cout<<endl<<"#######"<<endl;
+    if(sum2 > 0)
+    {
+        maxGradient = (int)((float)sum1 / sum2);
+    }
+
     return maxGradient;
 }
 
@@ -107,8 +174,18 @@ float cv_blur_detect(const cv::Mat& input)
     cv::Mat img;
     cv::cvtColor(input, img, CV_RGB2GRAY);
 
-    int maxHoriGradient = GetMaxGradient(img.data, img.cols, img.rows, 0);
-    int maxVertGraident = GetMaxGradient(img.data, img.cols, img.rows, 1);
+    int maxHoriGradient = 0;
+    int maxVertGraident = 0;
+    if(0)
+    {
+        maxHoriGradient = GetMaxGradient(img.data, img.cols, img.rows, 0);
+        maxVertGraident = GetMaxGradient(img.data, img.cols, img.rows, 1);
+    }
+    else
+    {
+        maxHoriGradient = GetMaxGradientEx(img.data, img.cols, img.rows, 0);
+        maxVertGraident = GetMaxGradientEx(img.data, img.cols, img.rows, 1);
+    }
 
     double gradient = std::min(maxHoriGradient, maxVertGraident);
 
