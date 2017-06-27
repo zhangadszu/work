@@ -2,13 +2,39 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+<script src="/omega/jquery.js"></script>
+<link rel="stylesheet" href="/omega/css/text.css" type="text/css" />
+<script>
+$(document).ready(function(){
+    var jq = $.noConflict();
+    var d=new Date();
+    jq.getJSON('/omega/employee.json', {t: d.getTime()}, function(response,status,xhr){
+        if(status=='success'){
+            var sdiv = jq('div#content');
+            var table_content = '';
+            table_content = '<table border="1" width="1200" >';
+            table_content += '<tr><th>序号</th><th>ID</th><th>名字</th><th>头像</th></tr>';
+            jq.each(response.employees, function(i, item){
+                table_content += '<tr><th>' + i + '</th><th>'
+                    + item.id + '</th><th ><input type="text" disabled="disabled" value="' 
+                    + item.firstName + ' ' + item.lastName + '"/></th><th>'
+                    + '<img src="' + item.logo + '" width="100" height="100" ></th></tr>';
+            });
+            sdiv.append(table_content);
+        }
+        else{
+            jq('div#content').append('<H5>加载失败！</H5>');
+        }
+    });
+})
+</script>
 <head>
 <title>Omega 管理端</title>
 </head>
 
-<body bgcolor="#6F6F6F">
+<body>
 
-<h3>content a</h3>
+<div id="content" ></div>
 
 </body>
 </html>

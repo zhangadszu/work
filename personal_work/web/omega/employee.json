@@ -1,0 +1,7 @@
+{
+"employees": [
+{ "id":123, "firstName":"Bill" , "lastName":"Gates", "logo":"http://shp.qpic.cn/piccommunity/0/f2cbbf43c50946009e3869b4f8912e92/0"},
+{ "id":456, "firstName":"George" , "lastName":"Bush", "logo":"http://shp.qpic.cn/piccommunity/0/f2cbbf43c50946009e3869b4f8912e92/0"},
+{ "id":789, "firstName":"Thomas" , "lastName":"Carter", "logo":"http://shp.qpic.cn/piccommunity/0/f2cbbf43c50946009e3869b4f8912e92/0"}
+]
+}
