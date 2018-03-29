@@ -32,6 +32,8 @@ void pt()
 
 int main ()
 {
+	cout<<RAND_MAX<<endl;
+
 	pt();
 	pt();
 	pt();

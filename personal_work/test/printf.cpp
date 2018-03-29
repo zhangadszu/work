@@ -6,6 +6,15 @@
 
 int main()
 {
+	char ch = '1';
+	printf("20171227 ch=1 %d\n", ch);
+
+
+	int aaa = 88823;
+	int bbb = 55;
+	printf("aaaa %d\n", aaa = bbb);
+
+
 	for(unsigned int i = 0; i < 3000000000U; i += 10000000U)
 	{
 //		printf("./reader_clean 2 %u %u\n", i, i + 10000000 - 1);	

@@ -3,11 +3,17 @@
 #include <algorithm>
 #include <sys/time.h>
 #include <unistd.h>
-
+#include <string>
 using namespace std;
 
 int main()
 {
+	vector<string> vs;
+	vs.push_back("#@#@@#@##@$");
+	swap(vs[0], vs[0]);
+	cout<<vs[0]<<endl;
+
+
 	vector<int> va;
 	vector<int> vb;
 
