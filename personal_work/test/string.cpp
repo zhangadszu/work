@@ -5,6 +5,10 @@ using namespace std;
 
 int main()
 {
+   string empty;
+   cout<<"find_first_of:"<< (empty.find_first_of(" ")) << endl;
+
+
     string url = "http://qqadapt.qpic.cn/wecam_pic/0/1009_3e384bf5486d4ca08f1d49331b0d470b_1/0?w5=0&h5=0";
     auto p = url.find("_1/0");
     if(p != string::npos)

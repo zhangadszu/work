@@ -11,8 +11,8 @@ int main()
 	printf("map::max_size=%u\n", mapStrI.max_size());
 	map<unsigned, unsigned> mapUI;
 	printf("map::max_size=%u\n", mapUI.max_size());
-return 0;	
-	mapStrI.insert(std::make_pair("a", "aaaa"));
+	
+        mapStrI.insert(std::make_pair("a", "aaaa"));
 	mapStrI.insert(std::make_pair("b", "bbbb"));
 	mapStrI.insert(std::make_pair("a", "bbbb"));
 

@@ -6,6 +6,10 @@
 
 int main()
 {
+	long l = 1231234214L;
+	long long ll = l;
+	printf("long:%ld long long:%lld\n", l, ll);
+
 	char ch = '1';
 	printf("20171227 ch=1 %d\n", ch);
 

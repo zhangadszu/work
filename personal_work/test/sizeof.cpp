@@ -7,7 +7,8 @@ int main()
 {
 	cout<<sizeof("abcdefg")<<endl;
 	
-	cout<<sizeof(unsigned long)<<endl;
+	cout<<sizeof(long)<<endl;
+	cout<<sizeof(long long)<<endl;
 	
 	char as[4] = "abk";
 	char as2[4]= "129";
