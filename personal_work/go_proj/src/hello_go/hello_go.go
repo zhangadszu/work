@@ -2,9 +2,9 @@ package main
 
 import "fmt"
 
-type A struct{
+type A struct {
 	I int
-	S string	
+	S string
 }
 
 func getA(a *A) {
@@ -12,68 +12,68 @@ func getA(a *A) {
 	a.S = "sssss"
 }
 
-func testF(){
+func testF() {
 	var a A
-    a.I = 111;
-    a.S = "abc"
-    fmt.Println(a)
-    //getA(a)
-    getA(&a)
-    fmt.Println(a)
+	a.I = 111
+	a.S = "abc"
+	fmt.Println(a)
+	//getA(a)
+	getA(&a)
+	fmt.Println(a)
 }
 
-func  testDefer(){
-    defer fmt.Println("1")
-    defer fmt.Println("2")
+func testDefer() {
+	defer fmt.Println("1")
+	defer fmt.Println("2")
 
-    return
+	return
 
-    defer fmt.Println("3")
+	defer fmt.Println("3")
 }
 
-func chanWork(ch chan int, i int){
+func chanWork(ch chan int, i int) {
 	ch <- i
 }
 
-func testChan(){
+func testChan() {
 	ch := make(chan int)
 	defer close(ch)
 	for i := 0; i < 10; i++ {
 		go chanWork(ch, i)
-	} 
+	}
 
 	for i := 0; i < 10; i++ {
-		r := <- ch
+		r := <-ch
 		fmt.Println(i, r)
 	}
 
 }
 
-func modSlice(sl *[]int){
+func modSlice(sl *[]int) {
 	*sl = append(*sl, 4)
 }
 
-func modSlice2(sl []int){
+func modSlice2(sl []int) {
 	sl = append(sl, 5)
 }
 
-func testSlice(){
-	sl := []int{1,2,3}
-	
+func testSlice() {
+	sl := []int{1, 2, 3}
+
 	modSlice2(sl)
 	modSlice(&sl)
-	fmt.Println(sl)	
+	fmt.Println(sl)
 }
 
-func modMap(m map[string]string){
+func modMap(m map[string]string) {
 	m["a"] = "1"
 }
 
-func testMap(){
+func testMap() {
 	m := map[string]string{}
 	m["b"] = "2"
 
-	v,ok := m["c"]
+	v, ok := m["c"]
 	if ok {
 		fmt.Println(v)
 	}
@@ -81,13 +81,13 @@ func testMap(){
 	fmt.Println(d)
 
 	modMap(m)
-	fmt.Println(m)	
+	fmt.Println(m)
 }
 
-func testRange(){
+func testRange() {
 	l := []int{1, 2, 3}
 
-	for i,a := range(l){
+	for i, a := range l {
 		fmt.Println(a)
 		a = i * 100
 		//l[i] = a
@@ -96,7 +96,7 @@ func testRange(){
 	fmt.Println(l)
 }
 
-func testSlice2(){
+func testSlice2() {
 	l := []int{1, 2, 3, 4, 5, 6}
 
 	ll := l
@@ -107,35 +107,34 @@ func testSlice2(){
 	fmt.Println(ll)
 }
 
-func testGo3(i int){
+func testGo3(i int) {
 	fmt.Println(i)
 }
 
-func testGo2(){
+func testGo2() {
 	go testGo3(1)
 	go testGo3(2)
 	go testGo3(3)
 }
 
-func testGo(){
+func testGo() {
 	go testGo2()
 
-	for true{
+	for true {
 
 	}
 }
 
 func main() {
-    fmt.Println("Hello, Go!")
+	fmt.Println("Hello, Go!")
 
-
-    //testF()
-    //testDefer()
-    //testChan()
-    //testSlice()
-    //testMap()
-    //testRange()
-    //testSlice2()
-    testGo()
+	//testF()
+	//testDefer()
+	//testChan()
+	//testSlice()
+	//testMap()
+	//testRange()
+	//testSlice2()
+	testGo()
 
 }
